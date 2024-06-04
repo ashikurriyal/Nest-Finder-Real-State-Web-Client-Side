@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
-
+import logo from '../../../../assets/NestFinderLogo.png'
 
 
 
@@ -33,7 +33,7 @@ const Navbar = () => {
 
     const navItems = <>
         <li className="font-semibold text-xl"><Link to="/">Home</Link></li>
-        {/* <li className="font-semibold text-xl"><Link to="/assignments">Assignments</Link></li> */}
+
 
         {
             user &&
@@ -51,7 +51,7 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 px-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,7 +62,10 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Nest Finder</a>
+                <Link to="/" className="flex justify-center items-center gap-2">
+                    <img className="w-10" src={logo} alt="" />
+                    <p className="p-2 font-bold lg:text-3xl ">Nest Finder</p>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -75,12 +78,12 @@ const Navbar = () => {
                     user ? <>
                         {
                             user?.photoURL ?
-                                <div className="tooltip tooltip-bottom avatar dropdown dropdown-end" data-tip={user.displayName}>
+                                <div className="tooltip tooltip-bottom avatar dropdown dropdown-end z-10" data-tip={user.displayName}>
                                     <div tabIndex={0} role="button" className="lg:w-12 w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ">
                                         <img className="" src={user.photoURL} />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-lg w-52">
-                                        
+
                                         <li><a onClick={handleLogOut} className="font-semibold text-sm">Sign Out</a></li>
                                     </ul>
 
@@ -91,7 +94,7 @@ const Navbar = () => {
                                         <img className="" src="https://i.ibb.co/rb1pJ40/ben-sweet-2-Lowvi-VHZ-E-unsplash.jpg" />
                                     </div>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-lg w-52">
-                                        
+
                                         <li><a onClick={handleLogOut} className="font-semibold text-sm">Sign Out</a></li>
                                     </ul>
                                 </div>

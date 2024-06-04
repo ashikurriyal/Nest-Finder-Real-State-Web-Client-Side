@@ -1,5 +1,5 @@
 import AdvertisementSection from "./AdvertisementSection";
-import Banner from "./Banner";
+import Banner from "./Banner/Banner";
 
 
 const Home = () => {
