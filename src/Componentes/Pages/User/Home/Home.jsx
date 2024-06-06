@@ -1,4 +1,4 @@
-import AdvertisementSection from "./AdvertisementSection";
+import AdvertisementSection from "./AdvertiseSection/AdvertisementSection";
 import Banner from "./Banner/Banner";
 
 
