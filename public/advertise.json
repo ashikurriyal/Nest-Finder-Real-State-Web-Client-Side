@@ -1,23 +1,27 @@
 [
     {
+        "propertyTitle": "Cozy Family Home",
         "propertyImage": "https://i.ibb.co/nPXKdHL/ezgif-com-webp-to-png-converter-1.png",
         "propertyLocation": "123 Maple Street, Springfield",
         "priceRange": "Starting from $300,000",
         "verificationStatus": "pending"
     },
     {
+        "propertyTitle": "Modern Apartment",
         "propertyImage": "https://i.ibb.co/nPXKdHL/ezgif-com-webp-to-png-converter-1.png",
         "propertyLocation": "456 Oak Avenue, Springfield",
         "priceRange": "Starting from $400,000",
         "verificationStatus": "pending"
     },
     {
+        "propertyTitle": "Luxury Villa",
         "propertyImage": "https://i.ibb.co/nPXKdHL/ezgif-com-webp-to-png-converter-1.png",
         "propertyLocation": "789 Pine Road, Springfield",
         "priceRange": "Starting from $500,000",
         "verificationStatus": "pending"
     },
     {
+        "propertyTitle": "Charming Bungalow",
         "propertyImage": "https://i.ibb.co/nPXKdHL/ezgif-com-webp-to-png-converter-1.png",
         "propertyLocation": "101 Birch Lane, Springfield",
         "priceRange": "Starting from $350,000",
