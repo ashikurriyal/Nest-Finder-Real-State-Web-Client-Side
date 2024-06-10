@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../../../../Hooks/useAdmin";
 
 
 const Dashboard = () => {
     const isAgent = false;
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="lg:mx-36 mt-10">
@@ -12,7 +13,7 @@ const Dashboard = () => {
                 isAdmin ?
                     <>
                         <div className="grid grid-cols-2 border-xl justify-items-center  gap-6">
-                            <NavLink to='/dashboard/adminprofile' className="w-3/4  rounded-xl flex items-center justify-center font-medium text-2xl p-8 border-2 border-black">Admin Profile</NavLink>
+                            <NavLink to='/dashboard/adminProfile' className="w-3/4  rounded-xl flex items-center justify-center font-medium text-2xl p-8 border-2 border-black">Admin Profile</NavLink>
                             <NavLink to='/dashboard/manageProperties' className="w-3/4  rounded-xl flex items-center justify-center font-medium text-2xl p-8 border-2 border-black">Manage Properties</NavLink>
                             <NavLink to='/dashboard/manageUsers' className="w-3/4  rounded-xl flex items-center justify-center font-medium text-2xl p-8 border-2 border-black">Manage Users</NavLink>
                             <NavLink to='/dashboard/manageReviews' className="w-3/4  rounded-xl flex items-center justify-center font-medium text-2xl p-8 border-2 border-black">Manage Reviews</NavLink>

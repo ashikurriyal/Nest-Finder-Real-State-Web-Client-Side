@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const MangeUsers = () => {
+
+
 
     const axiosSecure = useAxiosSecure();
 
@@ -14,6 +17,36 @@ const MangeUsers = () => {
         }
     })
     console.log(users)
+
+    // handle make admin
+    const handleMakeAdmin = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make admin"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/users/${item._id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Sucessfull",
+                                text: `${item.name} is admin now`,
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
+    }
+
+
     return (
         <div className="lg:mx-36 mt-10">
             <div className="overflow-x-auto">
@@ -49,7 +82,14 @@ const MangeUsers = () => {
                                         <button className="btn btn-ghost btn-sm">Make Agent</button>
                                     </th>
                                     <th>
-                                        <button className="btn btn-ghost btn-sm">Make Admin</button>
+                                        {
+                                            item.role ?
+                                                <>
+                                                    <p>{item.role}</p>
+                                                </>
+                                                :
+                                                <button className="btn btn-ghost btn-sm" onClick={() => handleMakeAdmin(item)}>Make Admin</button>
+                                        }
                                     </th>
                                 </tr>
                             </>)

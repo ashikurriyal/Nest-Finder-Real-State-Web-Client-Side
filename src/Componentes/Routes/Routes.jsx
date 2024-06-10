@@ -8,6 +8,8 @@ import ErrorPage from "../Pages/Shared/ErrorPage";
 import MyProfile from "../Pages/User/MyProfile/MyProfile";
 import DashboardLayout from "../Layout/DashboardLayout";
 import ManageUsers from "../Pages/Admin/ManageUsers/ManageUsers";
+import ManageProperties from "../Pages/Admin/Mange Properties/ManageProperties";
+import AdminProfile from "../Pages/Admin/AdminProfile/AdminProfile";
 
 
 const router = createBrowserRouter([
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manageUsers',
                 element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: '/dashboard/adminProfile',
+                element: <AdminProfile></AdminProfile>
+            },
+            {
+                path: '/dashboard/manageProperties',
+                element: <ManageProperties></ManageProperties>
             }
 
         ]
