@@ -89,7 +89,7 @@ const Navbar = () => {
 
                                 </div> :
 
-                                <div className="tooltip tooltip-bottom avatar dropdown dropdown-end" data-tip={user?.displayName}>
+                                <div className="tooltip tooltip-bottom avatar dropdown dropdown-end z-10" data-tip={user?.displayName}>
                                     <div tabIndex={0} role="button" className="lg:w-12 w-10 rounded-full ring ring-offset-base-100 ring-pink-600">
                                         <img className="" src="https://i.ibb.co/rb1pJ40/ben-sweet-2-Lowvi-VHZ-E-unsplash.jpg" />
                                     </div>

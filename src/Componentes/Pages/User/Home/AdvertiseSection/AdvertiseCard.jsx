@@ -6,7 +6,7 @@ const AdvertiseCard = ({item}) => {
         <div>
             <div className="max-w-sm bg-white border-2 border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-2xl">
                 <a href="#">
-                    <img className="rounded-t-lg" src={propertyImage} alt="" />
+                    <img className="rounded-t-lg h-60" src={propertyImage} alt="" />
                 </a>
                 <div className="p-5">
                     <a href="#">

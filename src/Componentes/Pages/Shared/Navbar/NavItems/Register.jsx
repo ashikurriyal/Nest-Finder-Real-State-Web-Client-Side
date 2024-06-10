@@ -1,38 +1,46 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateCurrentProfile } = useContext(AuthContext);
 
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic()
 
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
+        const photourl = form.photourl.value;
         const password = form.password.value;
-        //console.log(name, email, password)
-        //console.log('abc')
+        console.log(name, email, photourl, password)
 
-        const regUser = { name, email, password }
+
+        const regUser = { name, email, photourl, password }
 
         createUser(email, password)
             .then(result => {
-                axios.post('http://localhost:5300/', regUser)
-                    .then(res => {
-                        console.log(res.data)
-                        navigate('/')
+                console.log(result.user)
+                updateCurrentProfile(name, photourl)
+                    .then(() => {
+
+                        axiosPublic.post('/users', regUser)
+                            .then(res => {
+                                Swal.fire({
+                                    title: "Register Successful!",
+                                    text: "Welcome to Nest Finder!",
+                                    icon: "success"
+                                });
+                                console.log(res.data)
+                                navigate('/')
+                            })
                     })
-                Swal.fire({
-                    title: "Register Successful!",
-                    text: "Welcome to Nest Finder!",
-                    icon: "success"
-                });
+
                 const user = result.user;
                 console.log(user)
             })
@@ -58,6 +66,10 @@ const Register = () => {
                 <div className="space-y-1 text-sm">
                     <label htmlFor="email" className="block text-gray-600 text-lg font-medium">Email</label>
                     <input type="text" name="email" id="email" placeholder="Your email" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                </div>
+                <div className="space-y-1 text-sm">
+                    <label htmlFor="photourl" className="block text-gray-600 text-lg font-medium">Photo URL</label>
+                    <input type="text" name="photourl" id="photourl" placeholder="Your Photo URL" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block text-gray-600 text-lg font-medium">Password</label>
