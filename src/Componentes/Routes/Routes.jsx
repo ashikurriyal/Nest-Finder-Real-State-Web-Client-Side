@@ -11,29 +11,38 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement:<ErrorPage></ErrorPage>,
-        children:  [
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
             {
                 path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
                 path: '/register',
-                element:<Register></Register>
+                element: <Register></Register>
             },
             {
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
-            },
-            {
-                path: '/myprofile',
-                element: <MyProfile></MyProfile>
             }
+
         ]
     },
+
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: '/dashboard/myprofile',
+                element: <MyProfile></MyProfile>
+            }
+
+        ]
+    }
 ]);
 export default router;
