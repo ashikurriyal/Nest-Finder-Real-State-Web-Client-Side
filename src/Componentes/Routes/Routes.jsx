@@ -6,6 +6,9 @@ import Register from "../Pages/Shared/Navbar/NavItems/Register";
 import Dashboard from "../Pages/Shared/Navbar/NavItems/Dashboard";
 import ErrorPage from "../Pages/Shared/ErrorPage";
 import MyProfile from "../Pages/User/MyProfile/MyProfile";
+import DashboardLayout from "../Layout/DashboardLayout";
+import ManageUsers from "../Pages/Admin/ManageUsers/ManageUsers";
+
 
 const router = createBrowserRouter([
     {
@@ -35,11 +38,16 @@ const router = createBrowserRouter([
 
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <DashboardLayout></DashboardLayout>,
         children: [
             {
                 path: '/dashboard/myProfile',
                 element: <MyProfile></MyProfile>
+            },
+            //admin
+            {
+                path: '/dashboard/manageUsers',
+                element: <ManageUsers></ManageUsers>
             }
 
         ]

@@ -2,11 +2,12 @@ import { NavLink } from "react-router-dom";
 
 
 const Dashboard = () => {
-    const isAgent = true;
-    const isAdmin = false;
+    const isAgent = false;
+    const isAdmin = true;
 
     return (
         <div className="lg:mx-36 mt-10">
+            
             {
                 isAdmin ?
                     <>
