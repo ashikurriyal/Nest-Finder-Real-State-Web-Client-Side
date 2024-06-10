@@ -16,17 +16,17 @@ const Register = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photourl = form.photourl.value;
+        const photoURL = form.photoURL.value;
         const password = form.password.value;
-        console.log(name, email, photourl, password)
+        console.log(name, email, photoURL, password)
 
 
-        const regUser = { name, email, photourl, password }
+        const regUser = { name, email, photoURL, password }
 
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
-                updateCurrentProfile(name, photourl)
+                updateCurrentProfile(name, photoURL)
                     .then(async () => {
 
                         const res = await axiosPublic.post('/users', regUser)
@@ -68,8 +68,8 @@ const Register = () => {
                     <input type="text" name="email" id="email" placeholder="Your email" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
                 </div>
                 <div className="space-y-1 text-sm">
-                    <label htmlFor="photourl" className="block text-gray-600 text-lg font-medium">Photo URL</label>
-                    <input type="text" name="photourl" id="photourl" placeholder="Your Photo URL" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                    <label htmlFor="photoURL" className="block text-gray-600 text-lg font-medium">Photo URL</label>
+                    <input type="text" name="photoURL" id="photoURL" placeholder="Your Photo URL" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block text-gray-600 text-lg font-medium">Password</label>

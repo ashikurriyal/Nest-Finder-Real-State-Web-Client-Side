@@ -1,10 +1,13 @@
 import { NavLink } from "react-router-dom";
 import useAdmin from "../../../../../Hooks/useAdmin";
+import useAgent from "../../../../../Hooks/useAgent";
 
 
 const Dashboard = () => {
-    const isAgent = false;
+    const [isAgent] = useAgent();
     const [isAdmin] = useAdmin();
+
+    // console.log(isAgent) 
 
     return (
         <div className="lg:mx-36 mt-10">

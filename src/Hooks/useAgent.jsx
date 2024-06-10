@@ -10,8 +10,9 @@ const useAgent = () => {
     const { data: isAgent } = useQuery({
         queryKey: [user?.email, 'isAgent'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/${user?.email}`)
-            return res.data?.admin;
+            const res = await axiosSecure.get(`/agents?email=${user?.email}`)
+            console.log(res.data)
+            return res.data?.agent;
         }
     })
 

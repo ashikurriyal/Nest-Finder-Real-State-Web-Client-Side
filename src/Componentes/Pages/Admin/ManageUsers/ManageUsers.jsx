@@ -45,6 +45,33 @@ const MangeUsers = () => {
             }
         });
     }
+    //handle make agent
+    const handleMakeAgent = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Agent"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/agents/${item._id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Sucessfull",
+                                text: `${item.name} is admin now`,
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
+    }
 
 
     return (
@@ -67,7 +94,7 @@ const MangeUsers = () => {
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={item.photourl} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={item.photoURL} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                             <div>
@@ -79,11 +106,18 @@ const MangeUsers = () => {
                                         {item.email}
                                     </td>
                                     <th>
-                                        <button className="btn btn-ghost btn-sm">Make Agent</button>
+                                        {
+                                            item.role === 'agent' ?
+                                                <>
+                                                    <p>{item.role}</p>
+                                                </>
+                                                :
+                                                <button className="btn btn-ghost btn-sm" onClick={() => handleMakeAgent(item)}>Make Agent</button>
+                                        }
                                     </th>
                                     <th>
                                         {
-                                            item.role ?
+                                            item.role === 'admin' ?
                                                 <>
                                                     <p>{item.role}</p>
                                                 </>

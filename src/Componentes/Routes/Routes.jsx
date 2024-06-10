@@ -10,6 +10,8 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import ManageUsers from "../Pages/Admin/ManageUsers/ManageUsers";
 import ManageProperties from "../Pages/Admin/Mange Properties/ManageProperties";
 import AdminProfile from "../Pages/Admin/AdminProfile/AdminProfile";
+import Wishlist from "../Pages/User/Wishlist/Wishlist";
+import AgentProfile from "../Pages/Agent/Agent Profile/AgentProfile";
 
 
 const router = createBrowserRouter([
@@ -41,10 +43,16 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <DashboardLayout></DashboardLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
+            //user
             {
                 path: '/dashboard/myProfile',
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: '/dashboard/wishlist',
+                element: <Wishlist></Wishlist>
             },
             //admin
             {
@@ -58,6 +66,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manageProperties',
                 element: <ManageProperties></ManageProperties>
+            },
+
+            //agent
+            {
+                path:'/dashboard/agentProfile',
+                element: <AgentProfile></AgentProfile>
             }
 
         ]

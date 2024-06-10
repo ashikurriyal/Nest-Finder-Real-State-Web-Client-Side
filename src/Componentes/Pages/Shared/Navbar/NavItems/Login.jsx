@@ -21,7 +21,7 @@ const Login = () => {
             .then(result => {
                 Swal.fire({
                     title: "Login Successful!",
-                    text: "Welcome Back to Cognitive Collab!",
+                    text: "Welcome Back to Nest Finder!",
                     icon: "success"
                 });
                 const user = result.user;
