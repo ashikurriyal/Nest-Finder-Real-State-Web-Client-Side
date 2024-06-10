@@ -27,18 +27,18 @@ const Register = () => {
             .then(result => {
                 console.log(result.user)
                 updateCurrentProfile(name, photourl)
-                    .then(() => {
+                    .then(async () => {
 
-                        axiosPublic.post('/users', regUser)
-                            .then(res => {
-                                Swal.fire({
-                                    title: "Register Successful!",
-                                    text: "Welcome to Nest Finder!",
-                                    icon: "success"
-                                });
-                                console.log(res.data)
-                                navigate('/')
-                            })
+                        const res = await axiosPublic.post('/users', regUser)
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                title: "Register Successful!",
+                                text: "Welcome to Nest Finder!",
+                                icon: "success"
+                            });
+                            console.log(res.data)
+                            navigate('/')
+                        }
                     })
 
                 const user = result.user;
