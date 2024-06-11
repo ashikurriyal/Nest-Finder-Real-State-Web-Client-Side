@@ -16,7 +16,7 @@ const MangeUsers = () => {
             return res.data;
         }
     })
-    console.log(users)
+    // console.log(users)
 
     // handle make admin
     const handleMakeAdmin = item => {

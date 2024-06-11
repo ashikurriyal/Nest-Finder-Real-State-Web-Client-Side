@@ -19,9 +19,10 @@ const AddProperty = () => {
         const priceRange = form.priceRange.value;
         const agentName = collectUser.name
         const agentEmail = collectUser.email;
+        const status = 'pending';
         
 
-        const addProperty = {propertyTitle, propertyLocation, propertyImage, priceRange, agentName, agentEmail};
+        const addProperty = {propertyTitle, propertyLocation, propertyImage, priceRange, agentName, agentEmail, status};
         
         const res = await axiosSecure.post('/properties', addProperty)
         if(res.data.insertedId) {
