@@ -1,16 +1,46 @@
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useUser from "../../../../Hooks/useUser";
 
 const AddProperty = () => {
     const collectUser = useUser();
     console.log(collectUser)
 
+    const axiosSecure = useAxiosSecure();
+
+
+    const handleAddProperty = async e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const propertyTitle = form.propertyTitle.value;
+        const propertyLocation = form.propertyLocation.value;
+        const propertyImage = form.propertyImage.value;
+        const priceRange = form.priceRange.value;
+        const agentName = collectUser.name
+        const agentEmail = collectUser.email;
+        
+
+        const addProperty = {propertyTitle, propertyLocation, propertyImage, priceRange, agentName, agentEmail};
+        
+        const res = await axiosSecure.post('/properties', addProperty)
+        if(res.data.insertedId) {
+            Swal.fire({
+                title: "Sucessfull",
+                text: "Property Added Successfully",
+                icon: "success"
+            });
+        }
+        // console.log(addProperty)
+    }
+
     return (
-        <div className="lg:mx-36 lg:mt-10 min-h-screen bg-white flex flex-col-reverse lg:flex-row  items-center py-10">
+        <div className="lg:mx-36 lg:mt-10 min-h-screen bg-white flex flex-col-reverse lg:gap-0 gap-4 lg:flex-row  items-center lg:py-10 py-4">
             {/* Add Property Form Section */}
             <div className="w-full lg:w-1/2 px-5">
                 <div className="bg-white shadow-md shadow-stone-700 rounded-lg p-6">
                     <h2 className="text-4xl font-bold mb-10 text-center text-gray-900">Add Property</h2>
-                    <form className="space-y-8">
+                    <form onSubmit={handleAddProperty} className="space-y-8">
                         <div className="form-group">
                             <label htmlFor="propertyTitle" className="block mb-2 text-lg text-gray-700">Property Title</label>
                             <input type="text" id="propertyTitle" name="propertyTitle" className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 focus:ring-2 focus:ring-black focus:outline-none" placeholder="Title of your property" />

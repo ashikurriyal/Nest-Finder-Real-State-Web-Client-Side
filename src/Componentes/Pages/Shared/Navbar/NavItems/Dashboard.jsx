@@ -10,7 +10,7 @@ const Dashboard = () => {
     // console.log(isAgent) 
 
     return (
-        <div className="lg:mx-36 mt-10">
+        <div className="lg:mx-36 lg:mt-10">
             
             {
                 isAdmin ?
