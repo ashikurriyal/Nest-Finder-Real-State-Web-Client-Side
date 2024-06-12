@@ -16,7 +16,7 @@ const AgentProfile = () => {
                 </div>
                 <div className="flex flex-col justify-center p-10 shadow-xl rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800 border-2" data-aos="fade-left"
                     data-aos-duration="2000">
-                    <img src={user?.photoURL} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+                    <img src={user?.photoURL} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square ring ring-primary" />
                     <div className="space-y-4 text-center flex flex-col  divide-y dark:divide-gray-300">
                         <div></div>
                        

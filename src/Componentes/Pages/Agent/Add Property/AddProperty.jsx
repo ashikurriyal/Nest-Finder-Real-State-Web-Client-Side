@@ -31,7 +31,7 @@ const AddProperty = () => {
                 },
             });
 
-            const property = { agentName: collectUser?.name, agentEmail: collectUser?.email, priceRange: parseInt(data.priceRange), propertyTitle: data.propertyTitle, propertyLocation: data.propertyLocation, propertyImage: res.data.data.display_url }
+            const property = { agentName: collectUser?.name, agentEmail: collectUser?.email, priceRange: parseInt(data.priceRange), propertyTitle: data.propertyTitle, propertyLocation: data.propertyLocation, propertyImage: res.data.data.display_url , status:'pending'}
 
             // console.log(property)
 
