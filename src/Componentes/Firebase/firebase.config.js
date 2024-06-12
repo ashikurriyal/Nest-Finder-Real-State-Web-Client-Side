@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBo6gOPKSQSdkFbPOBPLBhcIseS1eMcrtQ",
-  authDomain: "nestfinder-ce7a3.firebaseapp.com",
-  projectId: "nestfinder-ce7a3",
-  storageBucket: "nestfinder-ce7a3.appspot.com",
-  messagingSenderId: "980742275219",
-  appId: "1:980742275219:web:11e163bf529aca194dcd66"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
