@@ -36,7 +36,7 @@ const AllProperties = () => {
                         <p className="text-gray-600 mb-2">Verification Status: {property.status}</p>
                         <p className="text-gray-600 mb-2">Price Range: {property.priceRange}</p>
                         <div className="flex justify-end">
-                            <Link to={`/property/${property.id}`} className="bg-blue-500 text-white px-4 py-2 rounded-md">Details</Link>
+                            <Link to={`/propertyDetails/${property.id}`} className="bg-blue-500 text-white px-4 py-2 rounded-md">Details</Link>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ const AdvertisementSection = () => {
                 <p className="text-xl font-normal">Discover our featured properties and find your dream home today. Browse through the latest listings and take advantage of the best deals on the market.</p>
             </div>
 
-            <div className="grid grid-cols-4 justify-items-center gap-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-items-center gap-4">
                 {
                     add.map((item, index) => <AdvertiseCard key={index} item={item}></AdvertiseCard>)
                 }
