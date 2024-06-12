@@ -15,6 +15,7 @@ import AgentProfile from "../Pages/Agent/Agent Profile/AgentProfile";
 import AddProperty from "../Pages/Agent/Add Property/AddProperty";
 import MyAddedProperties from "../Pages/Agent/My Added Property/MyAddedProperties";
 import PropertyDetails from "../Pages/User/PropertyDetails/PropertyDetails";
+import AllProperties from "../Pages/Shared/Navbar/NavItems/AllProperties";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/propertyDetails',
                 element: <PropertyDetails></PropertyDetails>
+            },
+            {
+                path: '/allProperties',
+                element: <AllProperties></AllProperties>
             }
 
         ]
