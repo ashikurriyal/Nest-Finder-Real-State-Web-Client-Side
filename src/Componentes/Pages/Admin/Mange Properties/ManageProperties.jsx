@@ -1,17 +1,72 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const ManageProperties = () => {
 
     const axiosSecure = useAxiosSecure();
-    const { data: properties = [] } = useQuery({
+    const { data: properties = [], refetch } = useQuery({
         queryKey: ['properties'],
         queryFn: async () => {
             const res = await axiosSecure.get('/allProperties')
             return res.data
         }
     })
+
+    //verify property
+    const handleVerify = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Verify this property from the agent!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Verify This Property"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/properties/${item._id}`, { status: 'verified' }) // Send the status in the request body
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Successful",
+                                text: "Property Verified Successfully",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    });
+            }
+        });
+    }
+
+    //reject property
+    const handleReject = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Reject this property from the agent!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Reject This Property"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/properties/${item._id}`, { status: 'rejected' }) // Send the status in the request body
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                title: "Successful",
+                                text: "Property is Rejected",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    });
+            }
+        });
+    }
 
     console.log(properties)
     return (
@@ -68,12 +123,12 @@ const ManageProperties = () => {
                                         <td>
                                             {item.status === 'pending' && (
                                                 <>
-                                                    <button className="btn btn-sm bg-green-500 p-2" onClick={() => handleVerify()}>Verify</button>
-                                                    <button className="btn btn-sm bg-red-500 p-2" onClick={() => handleReject()}>Reject</button>
+                                                    <button className="btn btn-sm bg-green-500 p-2" onClick={() => handleVerify(item)}>Verify</button>
+                                                    <button className="btn btn-sm bg-red-500 p-2" onClick={() => handleReject(item)}>Reject</button>
                                                 </>
                                             )}
-                                            {item.status === 'verified' && <span>Verified</span>}
-                                            {item.status === 'rejected' && <span>Rejected</span>}
+                                            {item.status === 'verified' && <span className="text-green-500">Verified</span>}
+                                            {item.status === 'rejected' && <span className="text-red-500">Rejected</span>}
                                         </td>
                                     </th>
                                 </tr>

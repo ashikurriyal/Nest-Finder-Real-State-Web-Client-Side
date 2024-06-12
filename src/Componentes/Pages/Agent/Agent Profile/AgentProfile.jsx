@@ -19,7 +19,7 @@ const AgentProfile = () => {
                     <img src={user?.photoURL} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square ring ring-primary" />
                     <div className="space-y-4 text-center flex flex-col  divide-y dark:divide-gray-300">
                         <div></div>
-                       
+
                         <div className="my-2 space-y-1">
                             <h2 className="text-xl font-bold text-gray-400 sm:text-xl">Role: {collectUser?.role}</h2>
                         </div>

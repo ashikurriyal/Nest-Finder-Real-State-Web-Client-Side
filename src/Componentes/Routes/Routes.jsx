@@ -14,6 +14,7 @@ import Wishlist from "../Pages/User/Wishlist/Wishlist";
 import AgentProfile from "../Pages/Agent/Agent Profile/AgentProfile";
 import AddProperty from "../Pages/Agent/Add Property/AddProperty";
 import MyAddedProperties from "../Pages/Agent/My Added Property/MyAddedProperties";
+import PropertyDetails from "../Pages/User/PropertyDetails/PropertyDetails";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/propertyDetails',
+                element: <PropertyDetails></PropertyDetails>
             }
 
         ]
