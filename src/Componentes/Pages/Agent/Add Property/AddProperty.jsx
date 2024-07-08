@@ -13,7 +13,7 @@ const AddProperty = () => {
     const collectUser = useUser();
 
     const { register, handleSubmit } = useForm();
-    const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure(); 
     const axiosPublic = useAxiosPublic();
 
     const onSubmit = async (data) => {
@@ -31,11 +31,8 @@ const AddProperty = () => {
                 },
             });
 
-            const property = { agentName: collectUser?.name, agentEmail: collectUser?.email, priceRange: parseInt(data.priceRange), propertyTitle: data.propertyTitle, propertyLocation: data.propertyLocation, propertyImage: res.data.data.display_url , status:'pending'}
+            const property = { agentName: collectUser?.name, agentEmail: collectUser?.email, agentImage: collectUser?.photoURL, priceRange: parseInt(data.priceRange), propertyTitle: data.propertyTitle, propertyLocation: data.propertyLocation, propertyImage: res.data.data.display_url , status:'pending'}
 
-            // console.log(property)
-
-            // console.log(res.data);
 
             const result = await axiosSecure.post('/properties', property)
             if (result.data.insertedId) {

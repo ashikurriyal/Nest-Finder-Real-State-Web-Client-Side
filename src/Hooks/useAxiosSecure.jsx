@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const axiosSecure = axios.create({
-    baseURL:'http://localhost:5300'
+    baseURL:'https://nest-finder-server.vercel.app'
 })
 
 const useAxiosSecure = () => {

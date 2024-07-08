@@ -7,7 +7,7 @@ const ReviewCard = ({ item }) => {
 
         <div className="flex border-2 border-black p-4 gap-10 rounded-xl items-center">
             <div className="avatar">
-                <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <div className="w-24 rounded-full ring ring-yellow-400 ring-offset-base-100 ring-offset-2">
                     <img src={reviewerImage} />
                 </div>
             </div>

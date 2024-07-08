@@ -1,14 +1,65 @@
-
+import { Link, useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import ShowReviewinDetails from "./ShowReviewinDetails";
 
 const PropertyDetails = () => {
+    const loadedData = useLoaderData()
+    const { user } = useAuth()
+
+
+
+
+
+    const { _id, propertyTitle, propertyImage, priceRange, agentName, agentEmail, propertyLocation, status } = loadedData
+
+    // console.log(loadedData)
+
+    const axiosSecure = useAxiosSecure();
+    const { data: properties = []  } = useQuery({
+        queryKey: ['reviews'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/getReviews/${_id}`);
+            return res.data;
+        }
+    });
+    // console.log(properties)
+
+
+
+
+
+    const handleWishlist = async () => {
+
+        const wishlist = { propertyTitle, status, propertyImage, priceRange, agentName, agentEmail, propertyLocation, porpertyId: _id, email: user?.email, name: user?.displayName }
+        const res = await axiosSecure.post('/wishlist', wishlist)
+        if (res.data.insertedId) {
+            Swal.fire({
+                // position: "top-end",
+                icon: "success",
+                title: "Wishlist Added Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        console.log(wishlist)
+    }
+
     return (
-        <div className="lg:mx-32 grid md:grid-cols-12 grid-cols-1 gap-10">
+        <div className="lg:mx-32 grid md:grid-cols-12 grid-cols-1 gap-10 p-4">
             <div className="col-span-8">
                 {/* Property Details Content */}
-                <div className="py-8">
+                <div className="">
                     {/* Property Image */}
                     <div className="mb-8">
-                        <img src="https://i.ibb.co/W5727Ys/lycs-architecture-k-Udb-EEMc-Rw-E-unsplash.jpg" alt="Property" className="w-full h-96 rounded-lg" />
+                        <img src={propertyImage} alt="Property" className="w-full h-96 rounded-lg" />
+                    </div>
+                    <div className="mb-8">
+                        <h2 className="text-3xl font-semibold mb-4">{propertyTitle}</h2>
+                        <p className="text-xl font-normal mb-4">{propertyLocation}</p>
+                        <p className="text-xl text-yellow-400  w-1/3 font-bold mb-4">Starting from ${priceRange}</p>
                     </div>
 
                     {/* Property Description */}
@@ -20,34 +71,38 @@ const PropertyDetails = () => {
                     {/* Reviews Section */}
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
-                        {/* Review 1 */}
-                        <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                            <h3 className="text-lg font-semibold">John Doe</h3>
-                            <p className="text-gray-600">Great property! Loved the location and amenities.</p>
+                        {/* from here review card should start */}
+                        <div className="grid grid-cols-1 gap-5 mb-4">
+                            {
+                                properties.map((item, index) => <ShowReviewinDetails key={index} item={item}></ShowReviewinDetails>)
+                            }
                         </div>
 
-                        {/* Review 2 */}
-                        <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                            <h3 className="text-lg font-semibold">Jane Smith</h3>
-                            <p className="text-gray-600">Had a wonderful experience staying at this property. Highly recommended!</p>
-                        </div>
 
-                        {/* Review 3 */}
-                        <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                            <h3 className="text-lg font-semibold">Alice Johnson</h3>
-                            <p className="text-gray-600">The property exceeded our expectations. Will definitely visit again!</p>
-                        </div>
+                        <Link to={`/dashboard/addReview/${loadedData._id}`}><button className="rounded-lg bg-yellow-400 p-4 font-semibold text-xl text-black hover:text-black hover:bg-white hover:border-2 hover:border-yellow-400">Add Review</button>
+                        </Link>
+
                     </div>
                 </div>
 
             </div>
 
-            <div className="bg-amber-400 py-8 col-span-4 text-center">
-                <h2 className="text-2xl font-semibold mb-4">Agent Information</h2>
+            <div className="col-span-4 text-center flex flex-col gap-10">
 
-                <div className="border-2 border-black">
-                    
+                <div className="bg-yellow-400 h-96 py-8 rounded-lg">
+                    <div>
+                        <h2 className="text-2xl font-semibold mb-4">Agent Information</h2>
+                        <div className="border-2 border-black"></div>
+
+                        <div className="flex flex-col items-center">
+                            <h2 className="lg:text-3xl text-xl font-semibold mb-4">{agentName}</h2>
+                            <p className="lg:text-xl text-lg font-normal mb-4">{agentEmail}</p>
+                        </div>
+                    </div>
                 </div>
+
+                <button onClick={() => handleWishlist()} className="rounded-lg bg-yellow-400 p-4 font-semibold text-xl text-black hover:text-black hover:bg-white hover:border-2 hover:border-yellow-400">Wishlist</button>
+
             </div>
         </div>
     );

@@ -33,13 +33,9 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
-    /* const signInWithGitHub = () => {
-        setloading(true)
-        return signInWithPopup(auth, gitHubProvider)
-    } */
 
     const updateCurrentProfile = (name, photoURL) => {
-        return updateProfile(auth.currentUser, {displayName:name, photoURL:photoURL})
+        return updateProfile(auth.currentUser, {name:name, photoURL:photoURL})
     }
 
     useEffect(() => {

@@ -17,8 +17,8 @@ const ReviewSection = () => {
     return (
         <div className="max-w-7xl mx-auto space-y-10">
             <div className="text-center space-y-4">
-                <h1 className="text-5xl font-bold">Latest User Review</h1>
-                <p className="text-xl font-normal">Hear what our satisfied clients have to say about their experiences. Read the latest reviews and testimonials from our happy homeowners.</p>
+                <h1 className="lg:text-5xl text-3xl font-bold">Latest User Review</h1>
+                <p className="lg:text-xl text-lg font-normal">Hear what our satisfied clients have to say about their experiences. Read the latest reviews and testimonials from our happy homeowners.</p>
             </div>
 
             <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center gap-8">

@@ -22,13 +22,13 @@ const Register = () => {
 
 
         const regUser = { name, email, photoURL, password }
+        // console.log(regUser)
 
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
                 updateCurrentProfile(name, photoURL)
                     .then(async () => {
-
                         const res = await axiosPublic.post('/users', regUser)
                         if (res.data.insertedId) {
                             Swal.fire({
@@ -55,32 +55,32 @@ const Register = () => {
 
     }
     return (
-        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-base-200 text-gray-800 container mx-auto border-2 border-fuchsia-800">
-            <h1 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-800  to-pink-600">Register</h1>
+        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-base-200 text-gray-800 container mx-auto border-2 border-black">
+            <h1 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-black p-2">Register</h1>
             <form onSubmit={handleRegister} className="space-y-6">
 
                 <div className="space-y-1 text-sm">
                     <label htmlFor="name" className="block text-gray-600 text-lg font-medium">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Full Name" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                    <input type="text" name="name" id="name" placeholder="Full Name" className="border-2 border-black w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-black" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="email" className="block text-gray-600 text-lg font-medium">Email</label>
-                    <input type="text" name="email" id="email" placeholder="Your email" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                    <input type="text" name="email" id="email" placeholder="Your email" className="border-2 border-black w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-black" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="photoURL" className="block text-gray-600 text-lg font-medium">Photo URL</label>
-                    <input type="text" name="photoURL" id="photoURL" placeholder="Your Photo URL" className="border-2 border-fuchsia-700 w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                    <input type="text" name="photoURL" id="photoURL" placeholder="Your Photo URL" className="border-2 border-black w-full px-4 py-3 rounded-md  bg-gray-50 text-gray-800 focus:border-black" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="password" className="block text-gray-600 text-lg font-medium">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-2 border-fuchsia-700 bg-gray-50 text-gray-800 focus:border-fuchsia-700" />
+                    <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-2 border-black bg-gray-50 text-gray-800 focus:border-black" />
 
                 </div>
-                <button className="block w-full p-3 text-center text-lg font-normal shadow-xl rounded-sm text-gray-50 bg-gradient-to-r from-fuchsia-800  to-pink-600 hover:font-semibold">Register</button>
+                <button className="block w-full p-3 text-center text-lg font-normal shadow-xl rounded-sm text-gray-50 bg-black hover:font-semibold">Register</button>
             </form>
             <p className="text-sm text-center sm:px-6 text-gray-600 font-medium">Already have an account?
                 <Link to="/login">
-                    <a rel="noopener noreferrer" className="hover:font-semibold text-pink-700"> Log In</a>
+                    <a rel="noopener noreferrer" className="hover:font-semibold text-black underline"> Log In</a>
                 </Link>
 
             </p>
